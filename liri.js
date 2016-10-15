@@ -3,7 +3,7 @@
 
 // VARIABLES
 var keys = require('./keys.js');
-console.log(keys.twitterKeys);
+// console.log(keys.twitterKeys);
 
 // // Includes the request package for grabbing data from OMDB 
 var request = require('request');
@@ -11,17 +11,15 @@ var request = require('request');
 // Includes the FS package for reading and writing packages 
 var fs = require('fs');
 
-
 // grab user commands from node
 var command = process.argv[2];
 
 var Twitter = require('twitter'); 
 var client = new Twitter(keys.twitterKeys); 
-var params = {screen_name: 'nodejs'};
+var params = {screen_name: 'JessicaSung_'};
 
 
-
-
+// switch function for liri commands
 switch (command) {
 	case "my-tweets":		
 		grabTweets();
@@ -42,10 +40,21 @@ switch (command) {
 
 
 function grabTweets() {
-	console.log("Go grab my tweets");
+	// console.log("Go grab my tweets");
 	client.get('statuses/user_timeline', params, function(error, tweets, response) {
 	  if (!error) {
-	    console.log(tweets);
+	    // console.log(tweets);
+	    var tweetAmount = 0;
+
+	    if(tweets.length < 20){
+	    	tweetAmount = tweets.length;
+	    } 
+	    else {
+	    	tweetAmount = 20;
+	    }
+	    for (var i = 0; i < tweetAmount ; i++) {
+	    	console.log(tweets[i].text);
+	    }	    
 	  }
 	});
 }
@@ -60,19 +69,6 @@ function grabTweets() {
 
 
 
-
-// // Running the readFile module that's inside of fs.
-// // Stores the read information into the variable "data"
-// fs.readFile("random.txt", "utf8", function(err,data){
-// 	var params = {screen_name: 'nodejs'};
-
-// 	client.get('statuses/user_timeline', params, function(error, tweets, response) {
-// 	  if (!error) {
-// 	    console.log(tweets);
-// 	  }
-// 	});
-
-// }
 
 
 
