@@ -64,29 +64,26 @@ function grabTweets() {
 
 
 function spotifyThis() {
-	// console.log("Spotify this song for me");
-	if (mediaName == null) {
-		mediaName = "The Sign";
-	}
-
-	spotify.search({ type: 'track', query: mediaName = "The Sign"}, function(err, data) {	    
+	// console.log("Spotify this song for me");	
+	spotify.search({ type: 'track', query: mediaName || "The Sign"}, function(err, data) {	    
 	    if ( err ) {
 	        console.log('Error occurred: ' + err);
 	        return;
 	    }
 		
-	    console.log(data);
-	    // console.log("Artist: " + data.tracks.items[0].artists[0].name);
-	    // console.log("Name: " + );
-	    // console.log("Link: " + );
-	    // console.log("Album: " + );
+	    // console.log(data);
+	    console.log("Artist: " + data.tracks.items[0].artists[0].name);
+	    console.log("Name: " + data.tracks.items[0].name);
+	    console.log("Link: " + data.tracks.items[0].preview_url);
+	    console.log("Album: " + data.tracks.items[0].album.name);
 	});
-
 }
+
 
 function movieThis() {
 	// console.log("Find rotten tomatoes rating");
 }
+
 
 function doThis() {
 	// console.log("Do what I say!!");
