@@ -25,19 +25,31 @@ switch (command) {
 		grabTweets();
 		break;
 	case "spotify-this-song":
-		console.log("Spotify this song for me");
+		spotifyThis();		
 		break;
 	case "movie-this":
-		console.log("Find rotten tomatoes rating");
+		movieThis();
 		break;
 	case "do-what-it-says":
-		console.log("Do what I say!!");
+		doThis();
 		break;
 	default:
-		console.log("Invalid command");
+		console.log("Jessica, you forgot to add a liri command...again!");
 }
 
 
+
+function spotifyThis() {
+	// console.log("Spotify this song for me");
+}
+
+function movieThis() {
+	// console.log("Find rotten tomatoes rating");
+}
+
+function doThis() {
+	// console.log("Do what I say!!");
+}
 
 function grabTweets() {
 	// console.log("Go grab my tweets");
@@ -58,21 +70,3 @@ function grabTweets() {
 	  }
 	});
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// consumer_key: keys.twitterKeys.consumer_key,
-// consumer_secret: keys.twitterKeys.consumer_secret,
-// access_token_key: keys.twitterKeys.access_token_key,
-// access_token_secret: keys.twitterKeys.access_token_secret
