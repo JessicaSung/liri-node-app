@@ -24,22 +24,23 @@ var params = {screen_name: 'JessicaSung_'};
 
 
 // switch function for liri commands
-switch (command) {
-	case "my-tweets":		
-		grabTweets();
-		break;
-	case "spotify-this-song":
-		spotifyThis();		
-		break;
-	case "movie-this":
-		movieThis();
-		break;
-	case "do-what-it-says":
-		doThis();
-		break;
-	default:
-		console.log("Jessica, you forgot to add a liri command...again!");
-}
+	switch (command) {
+		case "my-tweets":		
+			grabTweets();
+			break;
+		case "spotify-this-song":
+			spotifyThis();		
+			break;
+		case "movie-this":
+			movieThis();
+			break;
+		case "do-what-it-says":
+			doThis();
+			break;
+		default:
+			console.log("Jessica, you forgot to add a liri command...again!");
+	}
+
 
 
 function grabTweets() {
@@ -65,7 +66,7 @@ function grabTweets() {
 
 function spotifyThis() {
 	// console.log("Spotify this song for me");	
-	spotify.search({ type: 'track', query: mediaName || "The Sign"}, function(err, data) {	    
+	spotify.search({ type: 'track', query: mediaName || "ace of base - the sign"}, function(err, data) {	    
 	    if ( err ) {
 	        console.log('Error occurred: ' + err);
 	        return;
@@ -82,9 +83,43 @@ function spotifyThis() {
 
 function movieThis() {
 	// console.log("Find rotten tomatoes rating");
+    omdb.get({ title: mediaName }, true, function(err, movie) {
+	    if(err) {
+	        return console.error(err);
+	    }		 
+	    if(!movie) {
+	        return console.log('Movie not found!');
+	    }
+	 
+	 	// console.log(movie);
+	 	console.log("Title: " + movie.title);
+	 	console.log("Year: " + movie.year);
+	 	console.log("IMDB Rating: " + movie.imdb.rating);
+	 	console.log("Produced in: " + movie.countries);
+	 	// this response did not have language in the API
+	 	// console.log("Language: " + );
+	 	console.log("Plot: " + movie.plot);
+	 	console.log("Actors: " + movie.actors);
+	 	// this response had "undefined" for Rotten Tomatoes Rating
+	 	// console.log("Rotten Tomatoes Rating: " + );
+	 	// this response did not have Rotten Tomatoes URL in the API
+	 	// console.log("Rotten Tomatoes URL: " + );	    
+	});
+	
 }
 
 
 function doThis() {
 	// console.log("Do what I say!!");
+	fs.readFile("random.txt", "utf8", function(err,data){
+		if (err) {
+			return;
+		}
+		// Break the string down by comma separation and store the contents into the output array.
+		var output = data.split(',');
+		// command = output[0];
+		// mediaName = output[1];
+
+		// liri(command);
+	});
 }
