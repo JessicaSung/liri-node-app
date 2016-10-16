@@ -24,6 +24,7 @@ var params = {screen_name: 'JessicaSung_'};
 
 
 // switch function for liri commands
+function liri(command) {
 	switch (command) {
 		case "my-tweets":		
 			grabTweets();
@@ -40,7 +41,7 @@ var params = {screen_name: 'JessicaSung_'};
 		default:
 			console.log("Jessica, you forgot to add a liri command...again!");
 	}
-
+}
 
 
 function grabTweets() {
@@ -115,11 +116,16 @@ function doThis() {
 		if (err) {
 			return;
 		}
+
 		// Break the string down by comma separation and store the contents into the output array.
 		var output = data.split(',');
-		// command = output[0];
-		// mediaName = output[1];
 
-		// liri(command);
+		command = output[0];
+		mediaName = output[1];
+
+		liri(command);
 	});
 }
+
+
+liri(command);
